@@ -3,6 +3,8 @@ I just made small alterations to the install script to accept an ssh key, eg. ./
 
 Also added taking a snapshot every 10 seconds into the mqtt-motion script that saves it as CAM_HOSTNAME.jpg in directory defined in mosquitto.conf, not super happy about how that's done but wanted the camera to serve scrypted's snapshot plugin since the regular jpeg.cgi doesn't work (I think because scrypted expects arrays for the http headers which wz_mini's cgi-bin implementation doesn't use.
 
+I ended up enabling cifs and mounting my Home Assistant /config/www folder on the camera at boot with a mount command dropped in /opt/wz_mini/etc/rc.local.d and serve the snapshot from hass.local:8123/CAM_HOSTNAME.jpg.  Just so I'm not writing a new snapshot to the sd card every 10 seconds.
+
 Added expire_after to the autodiscovery script only for the motion sensor right now, it uses the STATUSINTERVAL defined in mosquitto.conf.  Using that to detect when the script hangs, which doesn't happen often but does happen. Motion sensor mqtt topic normally fires status every 10-30 seconds, with expire_after if no message received after STATUSINTERVAL the binary_sensor goes unavailable in Home Assistant.
 
 # Adding MQTT Status and Control Integration to a wz_mini_hack Installed Camera
