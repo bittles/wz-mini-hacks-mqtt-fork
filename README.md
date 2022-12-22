@@ -1,8 +1,10 @@
 # This is a slight fork from g8keeperzuul's mqtt repo, credit to him
 I just made small alterations to the install script to accept an ssh key, eg. ./install.sh CAMERA_IP CAMERA_OPENSSH_KEY is the usage for it
+
 My install.sh also doesn't run the setup.sh that's in the installer folder after it's copied to the camera.  I didn't want my .user_config file overwritten so keep that in mind if you use this.
 
 Also added taking a snapshot every 10 seconds into the mqtt-motion script that saves it as /opt/wz_mini/www/snapshot.jpg, not super happy about how that's done but wanted the camera to serve scrypted's snapshot plugin since the regular jpeg.cgi doesn't work (I think because scrypted expects arrays for the http headers which wz_mini's cgi-bin implementation doesn't use.
+
 Added expire_after to the autodiscovery script only for the motion sensor right now.  Planning to use that to detect when the script hangs, which doesn't happen often but does happen.
 
 
