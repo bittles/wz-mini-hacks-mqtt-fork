@@ -1,0 +1,19 @@
+# Seconds between camera status updates via MQTT
+STATUSINTERVAL=300
+
+MQTT_BROKER_HOST=192.168.21.40
+MQTT_BROKER_PORT=41883
+MQTT_USERNAME=mqtthass
+MQTT_PASSWORD=hoJgQUTHf6%9iU
+
+MQTT_HA_TOPIC_BASE="homeassistant"
+
+MOSQUITTOOPTS=""
+
+MOSQUITTO_PUB_BIN=/media/mmc/mosquitto/bin/mosquitto_pub
+#MOSQUITTO_PUB_BIN="echo /media/mmc/mosquitto/bin/mosquitto_pub"
+#MOSQUITTOPUBOPTS="-r"
+MOSQUITTOPUBOPTS=""
+
+MOSQUITTO_SUB_BIN=/media/mmc/mosquitto/bin/mosquitto_sub
+MOSQUITTOSUBOPTS=""
