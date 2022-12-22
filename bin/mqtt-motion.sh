@@ -14,7 +14,10 @@ mqtt_publish(){ # $1 = /my/topic  $2 = payload
 	${MOSQUITTO_PUB_BIN} -h "${MQTT_BROKER_HOST}" -p "${MQTT_BROKER_PORT}" -u "${MQTT_USERNAME}" -P "${MQTT_PASSWORD}" -t "$1" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -r -m "$2"
 }
 
+SNAPSHOT_DIR=${SNAPSHOT_SAVE_LOCATION}
+
 # to avoid errors on boot with motion not being available, we wait
+# changed from 10 to 60 as 10 and 30 seemed to be too short to wait on my cams
 sleep 60
 while true; do
     ret=$(cmd waitmotion 10)
@@ -22,14 +25,14 @@ while true; do
     if [[ "$ret" == "detect"* ]]; then
         printf "\nMotion-detected - ${TOPIC_BASE}/motion/detected ON"
         mqtt_publish "${TOPIC_BASE}/motion/detected" "ON"
-        cmd jpeg 0 -n > /opt/wz_mini/www/snapshot.jpg
+        cmd jpeg 0 -n > ${SNAPSHOT_DIR}${CUSTOM_HOSTNAME}.jpg
         sleep 10
-        cmd jpeg 0 -n > /opt/wz_mini/www/snapshot.jpg
+        cmd jpeg 0 -n > ${SNAPSHOT_DIR}${CUSTOM_HOSTNAME}.jpg
         sleep 10
-        cmd jpeg 0 -n > /opt/wz_mini/www/snapshot.jpg
+        cmd jpeg 0 -n > ${SNAPSHOT_DIR}${CUSTOM_HOSTNAME}.jpg
         sleep 10
     else
-        cmd jpeg 0 -n > /opt/wz_mini/www/snapshot.jpg
+        cmd jpeg 0 -n > ${SNAPSHOT_DIR}${CUSTOM_HOSTNAME}.jpg
         mqtt_publish "${TOPIC_BASE}/motion/detected" "OFF"
     fi
 done

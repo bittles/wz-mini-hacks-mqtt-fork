@@ -7,8 +7,8 @@
 #   + overwrite web server init script with a fixed version
 
 if [ -z "$1" ]; then
-    echo "Usage: $0 <wyze cam v3 host address>"
-    echo "Example: $ $0 10.0.0.172"
+    echo "Usage: $0 <wyze cam v3 host address> /path/to/keyfile"
+    echo "Example: $ ./install.sh 10.0.0.172 ./opensshkey"
     echo "Ensure to update mosquitto.conf with MQTT broker connection details and desired status update interval."
     exit 1
 fi
@@ -23,7 +23,7 @@ scp -i ${WYZECAM_KEY} ./lib/* root@${WYZECAMV3_HOST}:/media/mmc/mosquitto/lib
 scp -i ${WYZECAM_KEY} mosquitto.conf root@${WYZECAMV3_HOST}:/media/mmc/mosquitto
 
 echo "Installing MQTT client on camera..."
-#ssh root@${WYZECAMV3_HOST} '/media/mmc/mosquitto/installer/setup.sh'
+ssh -i ${WYZECAM_KEY} root@${WYZECAMV3_HOST} '/media/mmc/mosquitto/installer/setup.sh'
 echo "Camera rebooting..."
 echo "You should see MQTT messages published when camera restarts."
 echo "Done"

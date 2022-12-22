@@ -1,10 +1,12 @@
 # Seconds between camera status updates via MQTT
 STATUSINTERVAL=300
 
-MQTT_BROKER_HOST=192.168.21.40
-MQTT_BROKER_PORT=41883
-MQTT_USERNAME=mqtthass
-MQTT_PASSWORD=hoJgQUTHf6%9iU
+SNAPSHOT_SAVE_LOCATION=/opt/wz_mini/www
+
+MQTT_BROKER_HOST=x.x.x.x
+MQTT_BROKER_PORT=1883
+MQTT_USERNAME=mqtt_username
+MQTT_PASSWORD=mqtt_password
 
 MQTT_HA_TOPIC_BASE="homeassistant"
 
