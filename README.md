@@ -1,4 +1,4 @@
-# This is a slight fork from g8keeperzuul's mqtt repo, credit to him
+# This is a slight fork from g8keeperzuul's mqtt repo, credit to him.  Motion sensor from simonsickle's fork
 I just made small alterations to the install script to accept an ssh key, eg. ./install.sh CAMERA_IP OPENSSH_KEY is the usage for it
 
 Also added taking a snapshot every 10 seconds into the mqtt-motion script that saves it as CAM_HOSTNAME.jpg in directory defined in mosquitto.conf, not super happy about how that's done but wanted the camera to serve scrypted's snapshot plugin since the regular jpeg.cgi doesn't work (I think because scrypted expects arrays for the http headers which wz_mini's cgi-bin implementation doesn't use.
