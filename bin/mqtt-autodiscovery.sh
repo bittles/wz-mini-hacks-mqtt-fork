@@ -10,7 +10,7 @@ source ${MQTT_CONFIG}
 mqtt_publish(){ # $1 = /my/topic  $2 = payload
     echo "MQTT publish $1 -> $2"
     # Note: all discovery messages are RETAINED
-	${MOSQUITTO_PUB_BIN} -h "${MQTT_BROKER_HOST}" -p "${MQTT_BROKER_PORT}" -u "${MQTT_USERNAME}" -P "${MQTT_PASSWORD}" -t "$1" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -r -m "$2"
+        ${MOSQUITTO_PUB_BIN} -h "${MQTT_BROKER_HOST}" -p "${MQTT_BROKER_PORT}" -u "${MQTT_USERNAME}" -P "${MQTT_PASSWORD}" -t "$1" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -r -m "$2"
 }
 
 DEVICE_MODEL=$(/opt/wz_mini/etc/init.d/s04model start | grep detected | cut -f1 -d ' ')
