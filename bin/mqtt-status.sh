@@ -46,7 +46,7 @@ source ${MQTT_CONFIG}
 TOPIC_BASE="${MQTT_HA_TOPIC_BASE}/camera/${CUSTOM_HOSTNAME}"
 mqtt_publish(){ # $1 = /my/topic  $2 = payload
     echo "MQTT publish ${TOPIC_BASE}$1 -> $2"
-	${MOSQUITTO_PUB_BIN} -h "${MQTT_BROKER_HOST}" -p "${MQTT_BROKER_PORT}" -u "${MQTT_USERNAME}" -P "${MQTT_PASSWORD}" -t "${TOPIC_BASE}$1" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -m "$2"
+	${MOSQUITTO_PUB_BIN} -h "${MQTT_BROKER_HOST}" -p "${MQTT_BROKER_PORT}" -u "${MQTT_USERNAME}" -P "${MQTT_PASSWORD}" -t "${TOPIC_BASE}$1" ${MOSQUITTOPUBOPTS} ${MOSQUITTOOPTS} -r -m "$2"
 }
 
 # Returns value part of KEY=VALUE where key is $1
